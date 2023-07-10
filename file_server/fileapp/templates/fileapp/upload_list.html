@@ -1,0 +1,48 @@
+{% block content %}
+{%load static%}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+<h3><a href="{% url 'fileapp:search' %}">search files</a>
+<h3>
+{% if user.is_superuser %}
+<a href="{% url 'fileapp:upload_file' %}"> upload file </a> {% endif %}
+<h1>List of Files</h1>
+
+<ul>
+    {% for file in files %}
+    <li>
+        <div class = "icon">
+        
+            {% if file.file.name|lower|slice:'-3:' == 'pdf' %} 
+            <img class = "image" src="{% static 'icons/pdf_icon.png' %}">
+            {% elif file.file.name|lower|slice:'-3:' == 'jpg' %} 
+            <img class = "image" src="{% static 'icons/jpg.png' %}" >
+            {% elif file.file.name|lower|slice:'-3:' == 'doc' %} 
+            <img class = "image" src="{% static 'icons/doc.png' %}" >
+            {% elif file.file.name|lower|slice:'-3:' == 'xls' %} 
+            <img class = "image" src="{% static 'icons/xls.png' %}" >
+            {% elif file.file.name|lower|slice:'-3:' == 'mp4' %} 
+            <img class = "image" src="{% static 'icons/video.jpg' %}" >
+            {% elif file.file.name|lower|slice:'-3:' == 'mp3' %} 
+            <img class = "image" src="{% static 'icons/audio.png' %}" >
+            {% else %}
+            <img class = "image" src="{% static 'icons/default_icon.jpg' %}" alt="default thumbnail">
+            {% endif %}
+            {%if file.file.name|lower|slice:'-3:' == 'pdf' %}
+                <a href="{% url 'fileapp:open_page' file.id %}">{{ file.title }}</a>
+            {%else%}
+                <a href="{% url 'fileapp:preview' file.id %}">{{ file.title }}</a>
+            {%endif%}
+       
+        </div> 
+    </li>
+
+    {% endfor %}
+</ul>
+
+{% if user.is_superuser %}
+<a href="{% url 'fileapp:logs' %}"> logs </a> {% endif %}
+<h3><a href="{% url 'authentication:logout' %}">log out</a>
+<h3></h3>
+{% endblock %}

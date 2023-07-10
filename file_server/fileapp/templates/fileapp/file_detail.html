@@ -1,0 +1,11 @@
+<html>
+<head>
+  <title>File Detail</title>
+</head>
+<body>
+    <h1>{{ file.title }}</h1>
+    <p>Description: {{ file.description}}</p>
+    <a href="{% url 'fileapp:open_page' file.id %}">download</a>
+      
+</body>
+</html>

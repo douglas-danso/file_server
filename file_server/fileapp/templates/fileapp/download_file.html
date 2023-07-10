@@ -1,0 +1,5 @@
+
+{% for file in files %}
+     <a href="{% url 'fileapp:download_file' file_id=file.id %}"> Download {{ file.title }}</a> 
+    
+{%endfor%}

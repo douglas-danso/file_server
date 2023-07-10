@@ -1,0 +1,20 @@
+<h1>{{ file.title }}</h1>
+<li>
+    {% comment %} <a href="{{ file.file.url }}">{{ file.name }}</a> {% endcomment %}
+    {% if file.thumbnail %}
+        
+        <img class = 'preview' src="{{ file.thumbnail.url }}" alt="{{ file.title}}">
+            
+    {% endif %}
+  </li>
+
+<p>{{ file.description }}</p>
+<li>
+    <button><a href="{% url 'fileapp:preview' file.id %}" preview>Preview</a></button>
+</li>
+    <li>
+        <button><a href="{% url 'fileapp:download_file' file.id %}" download>Download</a></button>
+    </li>
+    <li>
+        <button><a href="{% url 'fileapp:send_file_email' file.id %}">Send Email</a></button>
+    </li>

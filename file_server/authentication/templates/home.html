@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document Distribution Platform</title>
+</head>
+
+<body>
+    <h1>Welcome to Lizzy's Document Distribution Platform</h1>
+    <p>This platform allows you to download and send documents on behalf of various businesses.</p>
+    {% if user.is_authenticated %}
+    <p>You are currently logged in. Visit the <a href="{% url 'fileapp:upload_list' %}">feed page</a> to see the list of available documents.</p>
+    {% else %}
+    <p>Please <a href="{% url 'authentication:login' %}">log in</a> to access the available documents.</p>
+    <p>Please <a href="{% url 'authentication:signup' %}">sign up</a> if you do not have an account.</p>
+
+    {% endif %}
+</body>
+
+</html>
