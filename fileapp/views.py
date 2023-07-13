@@ -87,6 +87,7 @@ class FileListView(ListView):
     context_object_name = 'files'
     ordering = ['title']
     paginate_by = 20
+    
 @method_decorator(login_required, name='dispatch')
 class FileDetailView(DetailView):
     model = File

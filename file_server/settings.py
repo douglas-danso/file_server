@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_nyspm#9k-=w@qb$886uuefvqt4*0gqj0=^hr^&r5(!034deff'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,27 +139,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-# FILE_ICONS = {
-#     'pdf': '/static/icons/pdf.png',
-#     'doc': '/static/icons/doc.jpg',
-#     'xls': '/static/icons/xls.png',
-#     'jpg': '/static/icons/jpg.png',
-#     'png': '/static/icons/png.png',
-#     'svg': '/static/icons/svg.png',
-#     'mp4': '/static/icons/video.jpg',
-    
-#     # add more file types and icons as needed
-# }
-
-
-
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = 'uploads/'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'douglasdanso66@gmail.com'
-EMAIL_HOST_PASSWORD = 'oaqwaiafbwajjjpt'
+EMAIL_PORT=os.getenv('EMAIL_PORT')
+EMAIL_HOST_USER=os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD=os.getenv('EMAIL_HOST_USER_PASSWORD')
 
